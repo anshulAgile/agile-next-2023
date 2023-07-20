@@ -6,7 +6,6 @@ import {
     useDispatch,
     useSelector as useReduxSelector,
 } from "react-redux";
-import { createWrapper } from "next-redux-wrapper";
 
 export const store = configureStore({
     reducer: {

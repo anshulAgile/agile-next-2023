@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server'
-import { NextRequest } from 'next/server'
-import { CK_USER, ROUTES } from './constants'
+import { NextResponse, NextRequest } from 'next/server'
+import { CK_USER } from './constants'
+import { ROUTES } from './constants/routes'
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
@@ -23,7 +23,7 @@ export const config = {
   matcher: [
     '/',
     '/profile',
-    '/signin',
+    '/auth/signin',
     '/signup',
     '/verifyemail'
   ]
