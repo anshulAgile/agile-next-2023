@@ -1,0 +1,1 @@
+export const toCheckAuthPage = (path: string) => (path.includes('/auth'))

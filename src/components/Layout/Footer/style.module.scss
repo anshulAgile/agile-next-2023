@@ -1,0 +1,15 @@
+.container {
+    width: 100vw;
+    background-color: black;
+    height: 50px;
+
+    ul {
+        display: flex;
+        gap: 20px;
+
+        li {
+            font-size: '20px';
+            color: antiquewhite;
+        }
+    }
+}

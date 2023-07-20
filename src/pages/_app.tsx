@@ -1,6 +1,12 @@
-import '@/styles/globals.css'
+import Layout from '@/components/Layout'
+import { Providers } from '@/service/redux/Provider'
+import '@/style/index.scss'
 import type { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+export default function App({ Component, pageProps, router }: AppProps) {
+  return <Providers>
+    <Layout router={router}>
+      <Component {...pageProps} />
+    </Layout>
+  </Providers>
 }

@@ -1,0 +1,14 @@
+.container {
+    width: 100vw;
+    background-color: blueviolet;
+    height: 50px;
+
+    ul {
+        display: flex;
+        gap: 20px;
+
+        li {
+            color: 'white'
+        }
+    }
+}
