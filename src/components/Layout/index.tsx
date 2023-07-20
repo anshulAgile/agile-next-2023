@@ -2,19 +2,21 @@ import { ReactNode } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import { toCheckAuthPage } from "@/utils/functions";
+import { useRouter } from "next/router";
 
 interface IProps {
     children: ReactNode;
-    router: any
 }
 
-const Layout: React.FC<IProps> = ({ children, router }) => {
+const Layout: React.FC<IProps> = ({ children }) => {
+    const router = useRouter();
+    const showHeader = toCheckAuthPage(router.pathname)
 
     return (
         <>
-            {toCheckAuthPage(router?.state?.path || '') ? < Header /> : null}
+            {showHeader && <Header />}
             <main>{children}</main>
-            {toCheckAuthPage(router?.state?.path || '') ? <Footer /> : null}
+            {showHeader && <Footer />}
         </>
     )
 }

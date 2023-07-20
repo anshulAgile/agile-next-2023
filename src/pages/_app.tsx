@@ -5,7 +5,7 @@ import type { AppProps } from 'next/app'
 
 export default function App({ Component, pageProps, router }: AppProps) {
   return <Providers>
-    <Layout router={router}>
+    <Layout>
       <Component {...pageProps} />
     </Layout>
   </Providers>

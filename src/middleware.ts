@@ -6,8 +6,10 @@ export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
 
   const isPublicPath = path === ROUTES.signin
+  console.log('middleware executed - ----------------------------: ', isPublicPath);
 
   const token = request.cookies.get(CK_USER)?.value || ''
+  console.log('token: ', token);
 
   if (isPublicPath && token) {
     return NextResponse.redirect(new URL(ROUTES.default, request.nextUrl))
@@ -24,7 +26,7 @@ export const config = {
     '/',
     '/profile',
     '/auth/signin',
-    '/signup',
-    '/verifyemail'
+    '/auth/signup',
+    '/((?!api|_next/static|favicon.ico|assets).*)'
   ]
 }

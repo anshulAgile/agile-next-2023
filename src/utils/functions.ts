@@ -1,1 +1,1 @@
-export const toCheckAuthPage = (path: string) => (path.includes('/auth'))
+export const toCheckAuthPage = (path: string) => (!path.includes('/auth'))
