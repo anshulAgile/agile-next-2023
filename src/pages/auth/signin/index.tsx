@@ -20,7 +20,6 @@ const Signin = () => {
     const onLogin = async () => {
         login({ email: 'rootadmin@yopmail.com', password: '123456' })
             .then((res: AxiosResponse) => {
-                setCookie('token', JSON.stringify(res?.data))
                 router.replace(ROUTES.default)
             })
             .catch(err => {
