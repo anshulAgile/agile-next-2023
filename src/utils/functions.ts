@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation'
 import { ROUTES } from "@/constants/routes";
 
 // Fun used for setting up the common header for axios through out the app and rehydrate the redux store
-export const SetupAxios = (store: Store) => {
+export const setupAxios = (store: Store) => {
 
     try {
         if (getCookie(CK_USER)) {
