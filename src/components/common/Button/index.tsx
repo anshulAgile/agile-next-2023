@@ -5,7 +5,7 @@ interface IButtonProps {
     buttonClass?: string;
     disabled?: boolean;
     type: "button" | "reset" | "submit" | undefined;
-    variant?: "primary" | "secondary";
+    variant?: "primary" | "secondary" | "default";
     onClick?: any;
 }
 
@@ -24,7 +24,7 @@ const Button = (props: IButtonProps) => {
             type={type}
             disabled={disabled}
             onClick={onClick}
-            className={`${style.btn} ${variant === "primary" && style.btnPrimary}  ${variant === "secondary" && style.btnSecondary} ${disabled && style.disabled} ${buttonClass}`}
+            className={`${style.btn} ${variant === "default" && style.default} ${variant === "primary" && style.btnPrimary}  ${variant === "secondary" && style.btnSecondary} ${disabled && style.disabled} ${buttonClass}`}
         >
             {children}
         </button>

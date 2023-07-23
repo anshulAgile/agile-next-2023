@@ -6,7 +6,6 @@ export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
 
   const isPublicPath = path === ROUTES.signin
-  console.log('middleware executed - ----------------------------: ', isPublicPath);
 
   const token = request.cookies.get(CK_USER)?.value || ''
 

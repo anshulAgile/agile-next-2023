@@ -21,7 +21,6 @@ const removeToken = (token: string) => {
 
 AppAPIInstance.interceptors.response.use(
     (response: AxiosResponse) => {
-        console.log("Here...", response);
         return response.data;
     },
     (error: AxiosError) => {

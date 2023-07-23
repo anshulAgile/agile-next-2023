@@ -18,3 +18,7 @@ export const login = async (data: loginParam): Promise<any> => {
 export const test = async (): Promise<any> => {
     return AppAPIInstance.post('/admin/dashboard/count')
 };
+
+export const users = async (): Promise<any> => {
+    return AppAPIInstance.get('https://jsonplaceholder.typicode.com/users')
+};

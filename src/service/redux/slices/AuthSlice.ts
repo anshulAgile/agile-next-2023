@@ -21,7 +21,6 @@ const loginSlice = createSlice({
     initialState: initialState,
     reducers: {
         authSuccess: (state, action) => {
-            console.log('action: ', action.payload);
             AppAPIInstance.defaults.headers.common['Authorization'] =
                 "Bearer" + " " + action.payload.authToken;
 
