@@ -7,7 +7,6 @@ import type { AppProps } from 'next/app'
 
 console.log('hiiii');
 if (typeof window !== undefined) {
-  // console.log('window: ', window);
   setTimeout(() => {
     setupAxios(store)
   }, 200);

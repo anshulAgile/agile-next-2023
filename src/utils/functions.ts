@@ -8,8 +8,9 @@ import { ROUTES } from "@/constants/routes";
 
 // Fun used for setting up the common header for axios through out the app and rehydrate the redux store
 export const setupAxios = (store: Store) => {
-
+    console.log('setup axios called');
     try {
+        console.log('getCookie(CK_USER): ', getCookie(CK_USER));
         if (getCookie(CK_USER)) {
             const userData = JSON.parse(getCookie(CK_USER) || '');
 
@@ -39,6 +40,7 @@ export const setupAxios = (store: Store) => {
             }
         });
     } catch (error) {
+        console.log('error: ', error);
 
     }
 };
