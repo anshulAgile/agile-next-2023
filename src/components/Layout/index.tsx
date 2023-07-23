@@ -1,9 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import { toCheckAuthPage } from "@/utils/functions";
 import { useRouter } from "next/router";
-
 interface IProps {
     children: ReactNode;
 }
