@@ -13,9 +13,9 @@ export default function Home() {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   test()
-  // }, [])
+  useEffect(() => {
+    test()
+  }, [])
 
   const onLogout = () => {
     dispatch(authFail({}))
