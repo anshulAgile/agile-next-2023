@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import style from './style.module.scss'
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/service/redux/store';
@@ -12,7 +12,10 @@ import RecentlyAdded from '@/components/common/Home/RecentlyAdded';
 import TrustSection from '@/components/common/Home/TrustSection';
 
 export default function Home(props: any) {
-  console.log('props: ', props);
+  const { data } = props
+
+  const [data1, setdata] = useState(data)
+  console.log('data1: ', data1);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -30,10 +33,29 @@ export default function Home(props: any) {
   return (
     <>
       <Meta {...META_TAGS.default} />
+      <div>
+        {data1?.length ? data1?.map((val: any) => {
+          return <div key={val?.id}>
+            <h2>{val?.name}</h2>
+            <h2>{val?.phone}</h2>
+          </div>
+        }) : null}
+      </div>
       <BannerSection />
       <HowItWorks />
       <RecentlyAdded />
       <TrustSection />
     </>
   )
+}
+
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users`)
+  const data = await res.json()
+  console.log('data: ', data);
+
+  // Pass data to the page via props
+  return { props: { data } }
 }
