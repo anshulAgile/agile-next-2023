@@ -1,5 +1,4 @@
 import { CK_USER } from "@/constants";
-import { AppAPIInstance } from "@/service/api";
 import { deleteCookie, setCookie } from "@/service/cookie";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -21,16 +20,12 @@ const loginSlice = createSlice({
     initialState: initialState,
     reducers: {
         authSuccess: (state, action) => {
-            AppAPIInstance.defaults.headers.common['Authorization'] =
-                "Bearer" + " " + action.payload.authToken;
 
             setCookie(CK_USER, JSON.stringify(action.payload))
-
             state.isLoggedIn = true
             state.userData = action.payload
         },
         authFail: (state, action) => {
-            delete AppAPIInstance.defaults.headers.common['Authorization'];
 
             deleteCookie(CK_USER)
 

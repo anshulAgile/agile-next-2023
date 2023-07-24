@@ -1,11 +1,11 @@
 import { loginParam } from '@/types/auth';
-import { AppAPIInstance } from './api';
+import { api } from './api';
 import { LOGIN } from '@/constants/api';
 import { store } from './redux/store';
 import { authFail, authSuccess } from './redux/slices/AuthSlice';
 
 export const login = async (data: loginParam): Promise<any> => {
-    return AppAPIInstance.post(LOGIN, data)
+    return api().post(LOGIN, data)
         .then((res) => {
             store.dispatch(authSuccess(res?.data))
             return Promise.resolve(res);
@@ -16,9 +16,10 @@ export const login = async (data: loginParam): Promise<any> => {
         })
 };
 export const test = async (): Promise<any> => {
-    return AppAPIInstance.post('/admin/dashboard/count')
+    return api().post('/admin/dashboard/count', {
+    })
 };
 
 export const users = async (): Promise<any> => {
-    return AppAPIInstance.get('https://jsonplaceholder.typicode.com/users')
+    return api().get('https://jsonplaceholder.typicode.com/users')
 };

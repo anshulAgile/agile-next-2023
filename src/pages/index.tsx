@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import style from './style.module.scss'
 import { useRouter } from 'next/router';
-import { useAppDispatch } from '@/service/redux/store';
+import { useAppDispatch, useAppSelector } from '@/service/redux/store';
 import { authFail } from '@/service/redux/slices/AuthSlice';
 import { ROUTES } from '@/constants/routes';
 import { test } from '@/service/auth';
@@ -12,6 +12,7 @@ export default function Home() {
 
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { authToken } = useAppSelector(state => state.auth.userData);
 
   useEffect(() => {
     test()

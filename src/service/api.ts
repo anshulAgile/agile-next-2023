@@ -1,47 +1,61 @@
 // import { API_BASE } from '@/constants';
 import axios, { AxiosInstance, AxiosError, AxiosResponse } from "axios";
+import { store } from "./redux/store";
 
 const API_BASE = 'https://node-product-distribution-backend.agiletechnologies.in'
 
-const AppAPIInstance: AxiosInstance = axios.create({
-    baseURL: API_BASE,
-    headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-    },
-});
+export function getToken() {
+    const { getState } = store;
+    const { auth: { userData } } = getState()
+    return userData?.authToken
+}
 
-const setToken = (token: string) => {
-    AppAPIInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-};
+export function api() {
 
-const removeToken = (token: string) => {
-    delete AppAPIInstance.defaults.headers.common['Authorization'];
-};
-
-AppAPIInstance.interceptors.response.use(
-    (response: AxiosResponse) => {
-        return response.data;
-    },
-    (error: AxiosError) => {
-        if (error.response) {
-            if (error.response.data) {
-                console.error("API Error:", error.response.data);
-                // toast.dismiss();
-                // const errorResponse = error.response.data as IErrorResponse;
-                // toast.error(errorResponse.error);
-            }
-            if (error.response.status === 401 || error.response.status === 403) {
-                // const { dispatch } = store;
-                // dispatch({ type: "user/reset" });
-            }
+    const axiosClient: AxiosInstance = axios.create({
+        baseURL: API_BASE,
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+    });
+    axiosClient.interceptors.request.use(
+        (config) => {
+            console.log("Starting Loading");
+            if (getToken())
+                config.headers['Authorization'] = `Bearer ${getToken()}`;
+            return config;
+        },
+        (error) => {
+            console.error("Request interceptor error:", error);
+            return Promise.reject(error);
         }
-        throw error;
-    }
-);
+    );
+    axiosClient.interceptors.response.use(
+        (response: AxiosResponse) => {
+            console.log("Here...", response);
+            // if (response.data) {
+            //   toast.dismiss();
+            //   const successResponse = response.data as ISuccessResponse;
+            //   toast.success(successResponse.message);
+            // }
+            return response.data;
+        },
+        (error: AxiosError) => {
+            if (error.response) {
+                if (error.response.data) {
+                    // console.error("API Error:", error.response.data);
+                    // toast.dismiss();
+                    // const errorResponse = error.response.data as IErrorResponse;
+                    // toast.error(errorResponse.error);
+                }
+                if (error.response.status === 401 || error.response.status === 403) {
+                    // dispatch(authFail({}));
+                }
+            }
+            throw error;
+        }
+    );
 
-export {
-    AppAPIInstance,
-    setToken,
-    removeToken
+    return axiosClient;
 }
