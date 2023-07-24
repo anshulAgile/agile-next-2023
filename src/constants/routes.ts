@@ -7,3 +7,10 @@ export const ROUTES = {
     forgotPassword: `/auth/forgot-password`,
     profile: `/profile`,
 }
+
+export const META_TAGS = {
+    default: {
+        title: 'Drop Shopee - Home',
+        description: 'Welcome to drop shopee'
+    }
+}

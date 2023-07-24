@@ -1,4 +1,5 @@
 import localFont from 'next/font/local'
+import { Nunito_Sans } from 'next/font/google'
 import { useEffect } from 'react'
 import Layout from '@/components/Layout'
 import { Providers } from '@/service/redux/Provider'
@@ -7,16 +8,22 @@ import { setupAxios } from '@/utils/functions'
 import type { AppProps } from 'next/app'
 import '@/style/index.scss'
 
-const Bondrians = localFont({ src: '../assets/fonts/Bondrians.ttf' })
+export const nunito_sans = Nunito_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+})
 
-export default function App({ Component, pageProps, router }: AppProps) {
+const Bondrians = localFont({ src: '../assets/fonts/Bondrians.ttf', weight: '100' })
+
+export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     setupAxios(store)
   }, [])
 
   return <Providers>
-    <div style={Bondrians.style}>
+    <div>
       <Layout>
         <Component {...pageProps} />
       </Layout>
