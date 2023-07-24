@@ -4,13 +4,17 @@ import { store } from "./redux/store";
 
 const API_BASE = 'https://node-product-distribution-backend.agiletechnologies.in'
 
+export interface IApiHeaders {
+    token?: string
+}
+
 export function getToken() {
     const { getState } = store;
     const { auth: { userData } } = getState()
     return userData?.authToken
 }
 
-export function api() {
+export function api(header: IApiHeaders = {}) {
 
     const axiosClient: AxiosInstance = axios.create({
         baseURL: API_BASE,
@@ -19,6 +23,9 @@ export function api() {
             "Content-Type": "application/json",
         },
     });
+    if (header?.token) {
+        axiosClient.defaults.headers.common["Authorization"] = header?.token
+    }
     axiosClient.interceptors.request.use(
         (config) => {
             console.log("Starting Loading");

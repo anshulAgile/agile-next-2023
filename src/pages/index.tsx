@@ -5,10 +5,11 @@ import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/service/redux/store';
 import { authFail } from '@/service/redux/slices/AuthSlice';
 import { ROUTES } from '@/constants/routes';
-import { test } from '@/service/auth';
+import { test, users } from '@/service/auth';
 import Link from 'next/link';
 
-export default function Home() {
+export default function Home(props: any) {
+  console.log('props: ', props);
 
   const router = useRouter();
   const dispatch = useAppDispatch();

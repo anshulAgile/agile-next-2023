@@ -1,5 +1,5 @@
 import { loginParam } from '@/types/auth';
-import { api } from './api';
+import { IApiHeaders, api } from './api';
 import { LOGIN } from '@/constants/api';
 import { store } from './redux/store';
 import { authFail, authSuccess } from './redux/slices/AuthSlice';
@@ -15,8 +15,8 @@ export const login = async (data: loginParam): Promise<any> => {
             return Promise.reject(err);
         })
 };
-export const test = async (): Promise<any> => {
-    return api().post('/admin/dashboard/count', {
+export const test = async (header: IApiHeaders = {}): Promise<any> => {
+    return api(header).post('/admin/dashboard/count', {
     })
 };
 
