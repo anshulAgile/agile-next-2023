@@ -6,6 +6,7 @@ import { Providers } from '@/service/redux/Provider'
 import { store } from '@/service/redux/store'
 import { setupAxios } from '@/utils/functions'
 import type { AppProps } from 'next/app'
+import { Analytics } from '@vercel/analytics/react';
 import '@/style/index.scss'
 
 export const nunito_sans = Nunito_Sans({
@@ -26,6 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <div>
       <Layout>
         <Component {...pageProps} />
+        <Analytics />
       </Layout>
     </div>
   </Providers>
