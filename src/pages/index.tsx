@@ -41,6 +41,7 @@ export default function Home(props: any) {
           </div>
         }) : null}
       </div>
+
       <BannerSection />
       <HowItWorks />
       <RecentlyAdded />
